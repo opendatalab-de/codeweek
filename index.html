@@ -15,6 +15,10 @@
             color: #FFF;
         }
 
+        a {
+            color: #FFF;
+        }
+
         img {
             width: 250px;
         }
@@ -32,6 +36,8 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         h1 {
@@ -40,6 +46,29 @@
 
         h1 small {
             display: block;
+        }
+
+        ul.unstyled {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .unstyled li {
+            padding-left: 0;
+        }
+
+        .timetable li {
+            margin-bottom: 2em;
+        }
+
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .team li {
+            flex: 1 1 400px;
+            text-align: center;
+            margin-bottom: 2em;
         }
     </style>
 </head>
@@ -82,7 +111,7 @@
             href="http://coworking-heilbronn.org/">Coworking Space in Heilbronn</a> ganztägig
         zum gemeinsamen coden geöffnet - kostenlos. Dazu bieten wir jeden Tag mindestens einen Workshop an!</p>
 
-    <ul>
+    <ul class="timetable unstyled">
         <li>
             <div class="weekday-title">Mo</div>
             <p class="weekday-content">
@@ -166,15 +195,13 @@
 
     <a class="button" href="http://www.meetup.com/de/OK-Lab-Heilbronn/events/225098617/">per Meetup</a>
     <a class="button mail-button" data-subject="Anmeldung Codeweek Hackday 17.10.2015">per E-Mail</a>
-
-    <img src="img/gruppe.jpg">
 </section>
 <section>
     <h2>Team</h2>
 
     <p>Wir organisieren für euch die Codeweek und die Workshops:</p>
 
-    <ul>
+    <ul class="unstyled team">
         <li>
             <p class="orga-name">Adrian Stabiszewski</p>
 
@@ -198,12 +225,12 @@
         <li>
             <p class="orga-name">Christoph Uschtrin</p>
 
-            <div class="avatar"><img src="img/unknown.jpg"></div>
+            <div class="avatar"><img src="img/unknown.png"></div>
         </li>
     </ul>
 </section>
 <section>
-    <ul>
+    <ul class="unstyled team">
         <li>
             <p class="orga-name"><a href="http://codefor.de/heilbronn">Code for Heilbronn</a> / <a
                     href="http://codefor.de">Code for Germany</a></p>
@@ -223,5 +250,23 @@
         </li>
     </ul>
 </section>
+
+<script>
+    function ready(fn) {
+        if (document.readyState != 'loading') {
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+    ready(function () {
+        var mailButtons = document.querySelectorAll('.mail-button');
+        for (var i = 0; i < mailButtons.length; i++) {
+            var mailButton = mailButtons[i];
+            mailButton.setAttribute('href', 'mailto:info' + '@' + 'opendatalab.de?subject=' + mailButton.dataset.subject);
+        }
+    });
+</script>
+
 </body>
 </html>
