@@ -9,6 +9,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
     <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
     <style type="text/css">
+        @-webkit-keyframes pulse {
+            from {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+
+            90% {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+
+            95% {
+                -webkit-transform: scale3d(1.2, 1.2, 1.2);
+                transform: scale3d(1.2, 1.2, 1.2);
+            }
+
+            to {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+        }
+
+        @keyframes pulse {
+            from {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+
+            90% {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+
+            95% {
+                -webkit-transform: scale3d(1.2, 1.2, 1.2);
+                transform: scale3d(1.2, 1.2, 1.2);
+            }
+
+            to {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+        }
+
         html {
             font-family: "Source Code Pro", "Lucida Console", Monaco, monospace;
             background-color: #4489CA;
@@ -70,9 +114,23 @@
             text-align: center;
             margin-bottom: 2em;
         }
+
+        .scroll-down-ad {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            width: 0;
+            height: 0;
+            content: '';
+            border-style: solid;
+            border-width: 50px 50px 0 50px;
+            border-color: #FFFFFF transparent transparent transparent;
+            animation: pulse 4s infinite;
+        }
     </style>
 </head>
 <body>
+<div class="scroll-down-ad"></div>
 <section>
     <h1>Code Week 2015 in Heilbronn
         <small>10.10. - 18.10.2015</small>
@@ -267,6 +325,12 @@
             var mailButton = mailButtons[i];
             mailButton.setAttribute('href', 'mailto:info' + '@' + 'opendatalab.de?subject=' + mailButton.dataset.subject);
         }
+
+        var onScroll = function () {
+            document.querySelector('.scroll-down-ad').style.display = 'none';
+            window.removeEventListener("scroll", onScroll);
+        };
+        window.addEventListener("scroll", onScroll);
     });
 </script>
 
